@@ -1,6 +1,5 @@
 import 'package:app_learn_pro/inicio_estructuras.dart';
 import 'package:app_learn_pro/inicio_paradigmas.dart';
-import 'package:app_learn_pro/video_player_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
