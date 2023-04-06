@@ -28,7 +28,7 @@ class _ChewieVideoState extends State<ChewieVideo> {
       //fullScreenByDefault: false,
       autoInitialize: true,
       allowFullScreen: true,
-      aspectRatio: 16 / 9,
+      aspectRatio: 16/ 9,
       looping: widget.looping,
       autoPlay: false,
       showControlsOnInitialize: false,

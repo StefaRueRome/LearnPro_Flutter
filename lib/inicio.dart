@@ -1,3 +1,4 @@
+import 'package:app_learn_pro/home_page.dart';
 import 'package:app_learn_pro/inicio_estructuras.dart';
 import 'package:app_learn_pro/inicio_paradigmas.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ import 'chewie_video.dart';
 void main() => runApp(MaterialApp(
       title: "App",
       debugShowCheckedModeBanner: false,
-      home: Inicio(),
+      home: InicioParadigmas(),
     ));
 
 class Inicio extends StatelessWidget{
@@ -58,14 +59,19 @@ class Inicio extends StatelessWidget{
         appBar: AppBar(backgroundColor: Color.fromARGB(242, 22, 134, 3),title: const Text("Inicio")),
         body: ListView(
           children: <Widget>[
-            ChewieVideo(
-              videoPlayerController: VideoPlayerController.network('http://learnpro.bucaramanga.upb.edu.co/videos/paradigmas/1.mp4'),
-              looping: false,
-            ),
+            SizedBox(height: 250,
+              child:
+              ChewieVideo(
+                videoPlayerController: VideoPlayerController.network('http://learnpro.bucaramanga.upb.edu.co/videos/paradigmas/1.mp4'),
+                looping: false,
+              ),),
+            SizedBox(height: 20),
+            SizedBox(height: 250,
+              child:
             ChewieVideo(
               videoPlayerController: VideoPlayerController.network('http://learnpro.bucaramanga.upb.edu.co/videos/paradigmas/2.mp4'),
               looping: false,
-            )
+            ),)
           ],
         )
     );
