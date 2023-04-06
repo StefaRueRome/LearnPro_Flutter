@@ -11,7 +11,7 @@ import 'chewie_video.dart';
 void main() => runApp(MaterialApp(
       title: "App",
       debugShowCheckedModeBanner: false,
-      home: InicioParadigmas(),
+      home: HomePage(),
     ));
 
 class Inicio extends StatelessWidget{
