@@ -13,16 +13,18 @@ class HomePage extends StatefulWidget{
 
 class _HomePageState extends State<HomePage> {
   List info=[];
-  _initData(){
-    DefaultAssetBundle.of(context).loadString("json/info.json").then((value){
+  Future _initData() async{
+    await DefaultAssetBundle.of(context).loadString("json/info.json").then((value){
       info= json.decode(value);
+    });
+    setState(() {
     });
   }
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    //_initData();
+    _initData();
   }
   @override
   Widget build(BuildContext context) {

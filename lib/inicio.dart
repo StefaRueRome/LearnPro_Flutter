@@ -9,10 +9,10 @@ import 'package:video_player/video_player.dart';
 import 'chewie_video.dart';
 
 void main() => runApp(MaterialApp(
-      title: "App",
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
-    ));
+  title: "App",
+  debugShowCheckedModeBanner: false,
+  home: HomePage(),
+));
 
 class Inicio extends StatelessWidget{
   @override
