@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:app_learn_pro/chewie_video.dart';
 import 'package:app_learn_pro/video.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -17,14 +18,16 @@ class InicioParadigmas extends StatefulWidget{
 
 class _InicioParadigmasState extends State<InicioParadigmas> {
   List _ListVideos=[];
-  List _listaPrueba=[];
-  ListView? _ListViewVideos;
+  //List _listaPrueba=[];
+  //ListView? _ListViewVideos;
   bool _playArea=false;
   VideoPlayerController? _controller;
-  late Future<void> _inizializeVideo;
+  //late Future<void> _inizializeVideo;
   bool _isPlaying=false;
   bool _disposed=false;
   int _isPlayingIndex=-1;
+  //late ChewieController _chewieControlador = _controller as ChewieController;
+  late int _foreanIndex;
 
   Future<dynamic> listado() async {
     String url = "http://learnpro.bucaramanga.upb.edu.co:3000/courses/get";
@@ -37,23 +40,6 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
       print(jDatos);
       setState(() {
       });
-      /*
-      _ListViewVideos = ListView.builder(
-          itemCount: jDatos["items"].length,
-          itemBuilder: (context, index) {
-            dynamic itm = jDatos["items"][index];
-            return Video(
-                id: itm["_id"],
-                imagen: itm["imagen"],
-                tema: itm["tema"],
-                linkVideo: itm["linkVideo"],
-                nombreVideo: itm["nombreVideo"],
-                descripcionVideo: itm["descripcionVideo"],
-                contenidoVideo: itm["contenidoVideo"],
-                duracionVideo: itm["duracionVideo"]
-                );
-          });
-      setState(() {});*/
     } catch (e) {
       print("Error en la operación" + e.toString());
       return null;
@@ -61,9 +47,8 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
   }
   @override
   void initState() {
-    // TODO: implement initState
+    super.initState();
     listado();
-    //_inizializeVideo=_controller?.initialize()!;
   }
   @override
   void dispose() {
@@ -93,7 +78,7 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
         child: Column(
           children: [
             _playArea==false?Container(
-              padding: EdgeInsets.only(top: 70,left: 20,right: 20),
+              padding: const EdgeInsets.only(top: 70,left: 20,right: 20),
               width: MediaQuery.of(context).size.width,
               height: 320,
               child: Column(
@@ -103,23 +88,23 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
                     children: [
                       InkWell(onTap:(){Navigator.of(context).pop();},child: IconButton(icon: Icon(Icons.arrow_back_ios, color: const Color.fromARGB(255, 228, 227, 227)), iconSize: 20, onPressed: ()=> {Navigator.of(context).pop()} ,)),
                       Expanded(child: Container()),
-                      IconButton(icon: Icon(Icons.info_outline, color: const Color.fromARGB(255, 228, 227, 227)), iconSize: 20, onPressed: ()=> {Navigator.of(context).pop()} ,)
+                      IconButton(icon:const Icon(Icons.info_outline, color: const Color.fromARGB(255, 228, 227, 227)), iconSize: 20, onPressed: ()=> {Navigator.of(context).pop()} ,)
                     ],
                   ),
-                  SizedBox(height: 30,),
+                  const SizedBox(height: 30,),
                   Container(
-                    padding: EdgeInsets.only(left: 12),
-                    child: Text("Paradigmas de",
+                    padding: const EdgeInsets.only(left: 12),
+                    child:const Text("Paradigmas de",
                       style: TextStyle(
                         fontSize: 25,
                         color: Color.fromARGB(255, 234, 233, 233)
                       ),
                     ),
                   ),
-                  SizedBox(height: 5,),
+                  const SizedBox(height: 5,),
                   Container(
-                    padding: EdgeInsets.only(left: 12),
-                    child: Text("Programación",
+                    padding: const EdgeInsets.only(left: 12),
+                    child: const Text("Programación",
                       style: TextStyle(
                         fontSize: 25,
                         color: Color.fromARGB(255, 234, 233, 233)
@@ -130,12 +115,12 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
                     children: [
                       Container(
                         //color: Colors.red,
-                        margin: EdgeInsets.all(10),
+                        margin: const EdgeInsets.all(10),
                         //padding: EdgeInsets.only(right),
                         width: 350,
                         height:80,
                         //height: MediaQuery.of(context).size.height,
-                        child: AutoSizeText(
+                        child: const AutoSizeText(
                           "Lorem Ipsum is simply dummy text of the printing" +
                           "and typesetting industry. Lorem Ipsum has been " +
                           "the industry's standard dummy text ever since the 1500s",
@@ -157,27 +142,29 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
                       children: [
                         InkWell(
                           onTap: (){
-                            debugPrint("tocado");
+                            setState(() {
+                              _playArea=false;
+                            });
+                            Get.back();
                           },
-                          child: Icon(Icons.arrow_back_ios,size: 20,color: Color.fromARGB(255, 244, 239, 239),),
+                          child: const Icon(Icons.arrow_back_ios,size: 20,color: Color.fromARGB(255, 244, 239, 239),),
                         ),
                         Expanded(child: Container()),
-                        Icon(Icons.info_outline,
+                        const Icon(Icons.info_outline,
                           size: 20,
                           color: Color.fromARGB(255, 244, 239, 239),
                         )
                       ],
                     ),
                   ),
-                  //ChewieVideo(videoPlayerController: VideoPlayerController.network(_ListVideos[inde]), looping: false),
                   _playView(context),
                   _controlView(context),
                 ],
               ),
             ),
-            Expanded(
+            _playArea==false?Expanded(
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(70)
@@ -185,15 +172,15 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
                 ),
                 child: Column(
                   children: [
-                    SizedBox(height: 30,),
+                    const SizedBox(height: 30,),
                     Container(
                       //color: Colors.red,
                       child: Row(
                         children: [
-                          SizedBox(height: 30,),
+                          const SizedBox(height: 30,),
                           Container(
-                            margin: EdgeInsets.only(left: 30),
-                            child: Text(
+                            margin: const EdgeInsets.only(left: 30),
+                            child:const Text(
                               "Programación con python",
                               style: TextStyle(
                                 fontSize: 20,
@@ -204,52 +191,40 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
                           ),
                           //SizedBox(height: 10,),
                           Container(
-                            margin: EdgeInsets.only(left:25),
+                            margin: const EdgeInsets.only(left:25),
                             //color: Colors.green,
                             child: Row(
                               children: [
                                 Container(child: IconButton(icon: Icon(Icons.loop, color: color.AppColor.detail), iconSize: 25, onPressed: ()=> {Navigator.of(context).pop()} ,)),
                                 //SizedBox(height: 0,),
-                                Text("Rep",style: TextStyle(fontSize: 15,color: Colors.grey),)
+                                const Text("Rep",style: TextStyle(fontSize: 15,color: Colors.grey),)
                               ],
                             ),
                           ),
                         ]
                       )
                     ),
-                    SizedBox(height: 5,),
+                    const SizedBox(height: 5,),
                     Expanded(
                       child: ListView.builder(
                         itemCount: _ListVideos.length,
                         itemBuilder: (context,index){
-                          print("Leggoo, length!!!!!!");
-                          print(_ListVideos.length);
-                        /*
-                        dynamic itm = _ListVideos[index];
-                        _ListVideos.add(Video(
-                          id: itm["_id"],
-                          imagen: itm["imagen"],
-                          tema: itm["tema"],
-                          linkVideo: itm["linkVideo"],
-                          nombreVideo: itm["nombreVideo"],
-                          descripcionVideo: itm["descripcionVideo"],
-                          contenidoVideo: itm["contenidoVideo"],
-                          duracionVideo: itm["duracionVideo"] ));
-                          //_ListViewVideos= ListView(children: _ListVideos);
-                        */
-                          //setState(() {});
+                          //print("Leggoo, length!!!!!!");
+                          //print(_ListVideos.length);
                         return GestureDetector(
                           onTap:(){
                             _onTapVideo(index);
+                            //ChewieVideo(videoPlayerController: _onTapVideo(index),looping: false,);
                             debugPrint(index.toString());
                             setState(() {
+                              _foreanIndex=index;
                               if(_playArea==false){
                                 _playArea=true;
                               }
                             });
                           },
                           child: Container(
-                            margin:EdgeInsets.only(left: 30, right: 20),
+                            margin:const EdgeInsets.only(left: 30, right: 20),
                             height: 180,
                             width: 200,
                             //color: Colors.red,
@@ -269,17 +244,17 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
                                         )
                                       ),
                                     ),
-                                    SizedBox(height: 10,),
+                                    const SizedBox(height: 10,),
                                     Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Container(
-                                          margin: EdgeInsets.only(left: 10),
+                                          margin: const EdgeInsets.only(left: 10),
                                           width: 200,
                                           //color: Colors.green,
                                           child: AutoSizeText(
                                             _ListVideos[index]["nombreVideo"],
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 17,
                                               fontWeight: FontWeight.bold
                                             ),
@@ -288,12 +263,12 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
                                             minFontSize: 17,
                                           ),
                                         ),
-                                        SizedBox(height: 10,),
+                                        const SizedBox(height: 10,),
                                         Padding(
-                                          padding: EdgeInsets.only(top: 3),
+                                          padding: const EdgeInsets.only(top: 3),
                                           child: Container(
                                             width: 270,
-                                            margin: EdgeInsets.only(left: 10),
+                                            margin:const EdgeInsets.only(left: 10),
                                             child: AutoSizeText(
                                               _ListVideos[index]["descripcionVideo"],
                                               style: TextStyle(color: Colors.grey[500]),
@@ -307,7 +282,7 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
                                     )
                                   ],
                                 ),
-                                SizedBox(height: 18,),
+                                const SizedBox(height: 18,),
                                 Row(
                                   children: [
                                     Container(
@@ -329,7 +304,7 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
                                       children:[
                                         //for(int i=0;i<70;i++)
                                         Container(
-                                          margin: EdgeInsets.only(left: 5),
+                                          margin: const EdgeInsets.only(left: 5),
                                           child: Divider(),
                                           width: 270,
                                           height: 1,
@@ -345,249 +320,115 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
                               ],
                             ),
                           ),
-                          
                         );
                       })
                     )
                   ],
                 ),
               )
+            ):Expanded(
+              child: Container(
+                //margin: EdgeInsets.only(left: 30),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(70)
+                  )
+                ),
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.only(left: 30),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 20,),
+                      Container(
+                        //color: Colors.red,
+                        child: Row(
+                          children: [
+                            const SizedBox(height: 20,),
+                            Container(
+                              child: const Text(
+                                "Descripción",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 90, 89, 89)
+                                ),
+                              ),
+                            ),
+                          ]
+                        )
+                      ),
+                      const SizedBox(height: 20,),
+                      Container(
+                        //color: Colors.red,
+                        //width: MediaQuery.of(context).size.width,
+                        width: 350,
+                        height: 80,
+                        child: AutoSizeText(
+                          _ListVideos[_foreanIndex]["descripcionVideo"],
+                          style: TextStyle(color: Color.fromARGB(255, 45, 45, 45)),
+                          maxLines: 4,
+                          maxFontSize: 15,
+                          minFontSize: 15,
+                        ),
+                      ),
+                      const SizedBox(height: 20,),
+                      Container(
+                        //margin: const EdgeInsets.only(left: 30),
+                        child: const Text(
+                          "Practica lo aprendido!",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 90, 89, 89)
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20,),
+                      Container(
+                        //color: Colors.red,
+                        //width: MediaQuery.of(context).size.width,
+                        width: 350,
+                        height: 80,
+                        child: const AutoSizeText(
+                          "A continuación encontraras un editor de codigo para que practiques lo visto en el video",
+                          style: TextStyle(color: Color.fromARGB(255, 45, 45, 45)),
+                          maxLines: 4,
+                          maxFontSize: 15,
+                          minFontSize: 15,
+                        ),
+                      ),
+                      //const SizedBox(height: 10,),
+                      Container(
+                        width: 350,
+                        height: 350,
+                        color: Colors.grey[700],
+                        child: Row(
+                          children: const [
+                            Text(
+                              "Editor de codigo - python ",
+                              style: TextStyle(fontSize: 15,color:Colors.grey),
+                            )
+                          ],
+                        ),
+                      )
+                    ]
+                  ),
+                )
+              )
             )
           ],
         ) ,
       ),
     );
-
-    /*
-    return MaterialApp(
-      title: 'LearnPro',
-      home: Scaffold(
-        body: CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              leading: IconButton(icon: const Icon(Icons.arrow_back),
-                onPressed: ()=> {Navigator.of(context).pop()},),
-              iconTheme: IconThemeData(color: Colors.white),
-              //title: Text('Paradigmas de Programación'),
-              backgroundColor: Color.fromARGB(255, 58, 184, 48),
-              expandedHeight: 300,
-              pinned: true,
-              floating: true,
-              flexibleSpace: FlexibleSpaceBar(
-                title: Text('Paradigmas de Programación',style: TextStyle(fontSize: 16),),
-                background: Image.network('http://learnpro.bucaramanga.upb.edu.co/logo.png',
-                fit: BoxFit.cover,),
-              ),
-            ),
-            SliverFillRemaining(
-              child: _buildContent(),
-            )/*
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-            ))*/
-          ],
-        )
-      ),
-    );
   }
-  Center _buildContent(){
-    return Center(
-      child: Text('Hola mundo'),
-    ); */
-
-  }
-  String _convertTwo(int value){
-    return value < 10 ? "0$value" : "$value";
-  }
-  Widget _controlView(BuildContext context){
-    final noMute=(_controller?.value.volume??0)>0;
-    final duration= _duration?.inSeconds??0;
-    final head = _position?.inSeconds??0;
-    final remained = max(0, duration-head);
-    final mins = _convertTwo(remained ~/ 60.0);
-    final secs = _convertTwo(remained % 60);
-
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SliderTheme(
-          data: SliderTheme.of(context).copyWith(
-            activeTrackColor: Colors.red[700],
-            inactiveTrackColor: Colors.red[100],
-            trackShape: RoundedRectSliderTrackShape(),
-            trackHeight: 2.0,
-            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
-            thumbColor: Colors.redAccent,
-            overlayColor: Colors.red.withAlpha(32),
-            overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
-            tickMarkShape: RoundSliderTickMarkShape(),
-            activeTickMarkColor: Colors.red[700],
-            inactiveTickMarkColor: Colors.red[100],
-            valueIndicatorShape: PaddleSliderValueIndicatorShape(),
-            valueIndicatorColor: Colors.redAccent,
-            valueIndicatorTextStyle: TextStyle(color: Colors.white)
-          ),
-          child: Slider(
-            value: max(0, min(_progress*100,100)),
-            min: 0,
-            max: 100,
-            divisions: 100,
-            label: _position?.toString().split(".")[0],
-            onChanged: (value) {
-              setState(() {
-                _progress=value*0.01;
-              });
-            },
-            onChangeStart: (value) {
-              _controller?.pause();
-            },
-            onChangeEnd: (value) {
-              final duration=_controller?.value?.duration;
-              if(duration!=null){
-                var newValue = max(0,min(value,99))*0.01;
-                var millis=(duration.inMilliseconds*newValue).toInt();
-                _controller?.seekTo(Duration(milliseconds: millis));
-                _controller?.play();
-              }
-            },
-          ),
-        ),
-        Container(
-          height: 50,
-          width: MediaQuery.of(context).size.width,
-          margin: EdgeInsets.only(bottom: 5),
-          color: color.AppColor.gradientS,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.only(right: 15),
-                child: InkWell(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 8),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            offset: Offset(0.0,0.0),
-                            blurRadius: 4.0,
-                            color: Color.fromARGB(50, 0, 0, 0)
-                          )
-                        ]
-                      ),
-                      child: Icon(noMute?Icons.volume_up:Icons.volume_off, color: Colors.white,),
-                    ),
-                  ),
-                  onTap: (){
-                    if(noMute){
-                      _controller?.setVolume(0);
-                    }else{
-                      _controller?.setVolume(1.0);
-                    }
-                    setState(() {
-                    });
-                  },
-                ),
-              ),
-              IconButton(
-                onPressed:()async{
-                  final index=_isPlayingIndex-1;
-                  if(index>=0&&_ListVideos.length>=0){
-                    _onTapVideo(index);
-                  }else{
-                    Get.snackbar("Lista de Video", "",
-                      snackPosition: SnackPosition.TOP,
-                      icon: const Icon(Icons.face,
-                      size: 30,
-                      color: Colors.white,
-                      ),
-                      backgroundColor: color.AppColor.gradientS.withOpacity(0.7),
-                      colorText: Colors.white,
-                      messageText: const Text("No hay videos anteriores",style: TextStyle(fontSize: 20,color:Colors.white),)
-                    );
-                  }
-                },
-                icon:const Icon(Icons.fast_rewind,
-                size: 36,
-                color: Colors.white,
-                )
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 25,right: 25),
-                child: IconButton(
-                  onPressed:()async{
-                    if(_isPlaying){
-                      setState(() {
-                        _isPlaying=false;
-                      });
-                      _controller?.pause();
-                    }else{
-                      setState(() {
-                        _isPlaying=true;
-                      });
-                      _controller?.play();
-                    }
-                  },
-                  icon: Icon(_isPlaying?Icons.pause:Icons.play_arrow,
-                  size: 36,
-                  color: Colors.white,
-                  )
-                ),
-              ),
-              IconButton(
-                onPressed:()async{
-                  final index=_isPlayingIndex+1;
-                  if(index<=_ListVideos.length-1){
-                    _onTapVideo(index);
-                  }else{
-                    Get.snackbar("Lista de Video", "",
-                      snackPosition: SnackPosition.TOP,
-                      icon: const Icon(Icons.face,
-                      size: 30,
-                      color: Colors.white,
-                      ),
-                      backgroundColor: color.AppColor.gradientS.withOpacity(0.7),
-                      colorText: Colors.white,
-                      messageText: Text("No hay mas videos en la lista",style: TextStyle(fontSize: 20,color:Colors.white),)
-                    );
-                  }
-                },
-                icon:const Icon(Icons.fast_forward,
-                size: 36,
-                color: Colors.white,
-                )
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 25),
-                child: Text(
-                  "$mins:$secs",
-                  style: TextStyle(
-                    color: Colors.white,
-                    shadows: <Shadow>[
-                      Shadow(
-                        offset: Offset(0.0,1.0),
-                        blurRadius: 4.0,
-                        color: Color.fromARGB(150, 0, 0, 0),
-                      )
-                    ]
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _playView(BuildContext context){
     final controller=_controller;
     if(controller!=null&&controller.value.isInitialized){
       return AspectRatio(
         aspectRatio: 16/9,
-        child: VideoPlayer(controller),
+        child: ChewieVideo(videoPlayerController: controller,looping: false,),
       );
     }else{
       return const AspectRatio(aspectRatio: 16/9, child: Center(child: Text("Preparando, porfavor espere..",style: TextStyle(fontSize: 20,color: Colors.white60),)));
@@ -637,6 +478,109 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
     _isPlaying=playing;
   }
 
+  String _convertTwo(int value){
+    return value < 10 ? "0$value" : "$value";
+  }
+  Widget _controlView(BuildContext context){
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          height: 50,
+          width: MediaQuery.of(context).size.width,
+          margin: const EdgeInsets.only(bottom: 5),
+          color: color.AppColor.gradientS,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed:()async{
+                  final index=_isPlayingIndex-1;
+                  if(index>=0&&_ListVideos.length>=0){
+                    _onTapVideo(index);
+                  }else{
+                    Get.snackbar("Lista de Video", "",
+                      snackPosition: SnackPosition.TOP,
+                      icon: const Icon(Icons.face,
+                      size: 30,
+                      color: Colors.white,
+                      ),
+                      backgroundColor: color.AppColor.gradientS.withOpacity(0.7),
+                      colorText: Colors.white,
+                      messageText: const Text("No hay videos anteriores",style: TextStyle(fontSize: 20,color:Colors.white),)
+                    );
+                  }
+                },
+                icon:const Icon(Icons.fast_rewind,
+                size: 36,
+                color: Colors.white,
+                shadows: <Shadow>[
+                    Shadow(
+                      offset: Offset(0.0,1.0),
+                      blurRadius: 4.0,
+                      color: Color.fromARGB(150, 0, 0, 0),
+                    )
+                  ],
+                )
+              ),
+              Center(
+                child: Container(
+                  //if(_foreanIndex!=null){},
+                  margin: const EdgeInsets.only(left: 12,right: 10, top: 5),
+                  width: 150,
+                  child: Text(_ListVideos[_foreanIndex]["nombreVideo"],
+                  style: const TextStyle(
+                    color: Colors.white,
+                    shadows: <Shadow>[
+                      Shadow(
+                        offset: Offset(0.0,1.0),
+                        blurRadius: 4.0,
+                        color: Color.fromARGB(150, 0, 0, 0),
+                      )
+                    ]
+                  ),
+                  textAlign: TextAlign.center,),
+                ),
+              ),
+              IconButton(
+                onPressed:()async{
+                  final index=_isPlayingIndex+1;
+                  if(index<=_ListVideos.length-1){
+                    _onTapVideo(index);
+                  }else{
+                    Get.snackbar("Lista de Video", "",
+                      snackPosition: SnackPosition.TOP,
+                      icon: const Icon(Icons.face,
+                      size: 30,
+                      color: Colors.white,
+                      ),
+                      backgroundColor: color.AppColor.gradientS.withOpacity(0.7),
+                      colorText: Colors.white,
+                      messageText: const Text("No hay mas videos en la lista",style: TextStyle(fontSize: 20,color:Colors.white),)
+                    );
+                  }
+                },
+                icon:const Icon(Icons.fast_forward,
+                size: 36,
+                color: Colors.white,
+                  shadows: <Shadow>[
+                    Shadow(
+                      offset: Offset(0.0,1.0),
+                      blurRadius: 4.0,
+                      color: Color.fromARGB(150, 0, 0, 0),
+                    )
+                  ],
+                )
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+
   _onTapVideo(int index)async{
     final controller=VideoPlayerController.network(_ListVideos[index]["linkVideo"]);
     final old = _controller;
@@ -652,6 +596,7 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
       _isPlayingIndex=index;
       controller.addListener(_onControllerUpdate);
       controller.play();
+      _foreanIndex=index;
       setState(() {
       });
     });
