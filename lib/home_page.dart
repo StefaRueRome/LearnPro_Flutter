@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 boxShadow: [
                     BoxShadow(
-                    offset: Offset(5 ,10),
+                    offset: const Offset(5 ,10),
                     blurRadius: 20,
                     color: color.AppColor.gradientS.withOpacity(0.2),
                   )
@@ -81,25 +81,25 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Próximo video",
+                    const Text("Próximo video",
                       style: TextStyle(
                         fontSize: 16,
                         color: Color.fromARGB(255, 234, 233, 233)
                       ),
                     ),
-                    SizedBox(height: 5,),
-                    Text("Descripción del video",
+                    const SizedBox(height: 5,),
+                    const Text("Descripción del video",
                       style: TextStyle(
                         fontSize: 22,
                         color: Color.fromARGB(255, 234, 233, 233)
                       ),
                     ),
-                    SizedBox(height: 25,),
+                    const SizedBox(height: 25,),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Row(
-                          children: [
+                          children: const [
                             Icon(Icons.timer, size: 20, color: Color.fromARGB(255, 234, 233, 233),),
                             SizedBox(width: 10,),
                             Text("60 min",  /////Tiempo del video
@@ -118,11 +118,11 @@ class _HomePageState extends State<HomePage> {
                               BoxShadow(
                                 color: color.AppColor.gradientF,
                                 blurRadius: 10,
-                                offset: Offset(4,8)
+                                offset: const Offset(4,8)
                               )
                             ]
                           ),
-                          child: Icon(Icons.play_circle_fill,
+                          child:const Icon(Icons.play_circle_fill,
                             color: Colors.white,
                             size: 60,
                           ),
@@ -154,12 +154,12 @@ class _HomePageState extends State<HomePage> {
                       boxShadow: [
                         BoxShadow(
                           blurRadius: 40,
-                          offset: Offset(8,10),
+                          offset:const Offset(8,10),
                           color: color.AppColor.gradientS.withOpacity(0.3),
                         ),
                         BoxShadow(
                           blurRadius: 40,
-                          offset: Offset(-8,-5),
+                          offset:const Offset(-8,-5),
                           color: color.AppColor.gradientS.withOpacity(0.3),
                         )
                       ]
@@ -169,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                     width: double.maxFinite,
                     height: 100,
                     margin: const EdgeInsets.only(left: 150,top:50),
-                    decoration: BoxDecoration(
+                    decoration:const BoxDecoration(
                       //color: Colors.redAccent.withOpacity(0.3),
                       //borderRadius: BorderRadius.circular(20),
                     ),
@@ -183,8 +183,8 @@ class _HomePageState extends State<HomePage> {
                             color: color.AppColor.detail,
                           ),
                         ),
-                        SizedBox(height: 10,),
-                        RichText(text: TextSpan(
+                        const SizedBox(height: 10,),
+                        RichText(text: const TextSpan(
                           text: "Sigue así. ",
                           style: TextStyle(
                             color: Color.fromARGB(255, 85, 84, 84),
@@ -198,7 +198,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Row(
-              children: [
+              children: const[
                 Text(
                   "Materias",
                   textAlign: TextAlign.center,
@@ -231,8 +231,8 @@ class _HomePageState extends State<HomePage> {
                           child: Container(
                             width:(MediaQuery.of(context).size.width-90)/2,
                             height: 140,
-                            margin: EdgeInsets.only(bottom: 5,left: 5,top:20),
-                            padding: EdgeInsets.only(bottom: 5),
+                            margin: const EdgeInsets.only(bottom: 5,left: 5,top:20),
+                            padding:const EdgeInsets.only(bottom: 5),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               image: DecorationImage(
@@ -244,12 +244,12 @@ class _HomePageState extends State<HomePage> {
                               boxShadow: [
                                 BoxShadow(
                                   blurRadius: 3,
-                                  offset: Offset(5,5),
+                                  offset:const Offset(5,5),
                                   color: color.AppColor.gradientS.withOpacity(0.1),
                                 ),
                                 BoxShadow(
                                   blurRadius: 3,
-                                  offset: Offset(-5,-5),
+                                  offset:const Offset(-5,-5),
                                   color: color.AppColor.gradientS.withOpacity(0.1),
                                 )
                               ]
