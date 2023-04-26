@@ -31,7 +31,7 @@ class _SignupPageState extends State<SignupPage> {
           children: [
             Center(
               child: const Text(
-                "Registrate",
+                "Regístrate",
                 style: TextStyle(
                   fontSize: 34,
                   fontFamily: "Poppins",
@@ -119,7 +119,7 @@ class _SignupPageState extends State<SignupPage> {
                     )
                   )
                 ),
-                icon: const Icon(Icons.arrow_right, color: Color.fromARGB(255, 17, 254, 0),),
+                icon: const Icon(Icons.arrow_right, color: Color.fromARGB(255, 30, 226, 16),),
                 label: const Text("Registrarse"),
               ),
             ),
@@ -129,7 +129,7 @@ class _SignupPageState extends State<SignupPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Ya estás registrado?. "),
-                  InkWell(child:Text("Accede", style: TextStyle(color: Color.fromARGB(255, 17, 254, 88),decoration: TextDecoration.underline),),onTap:(){
+                  InkWell(child:Text("Accede", style: TextStyle(color: Color.fromARGB(255, 13, 223, 76),decoration: TextDecoration.underline),),onTap:(){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginPage()));
                   })
                 ],

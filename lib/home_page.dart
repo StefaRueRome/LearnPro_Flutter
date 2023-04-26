@@ -36,60 +36,204 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context).user;
-    UserAccountsDrawerHeader _buildDrawerHeader(BuildContext context){
-    return UserAccountsDrawerHeader(
-      decoration: BoxDecoration(gradient: LinearGradient(
-        colors:[color.AppColor.gradientF.withOpacity(0.8), color.AppColor.gradientS.withOpacity(0.9)],
-        begin: Alignment.bottomLeft,
-        end: Alignment.centerRight
-      ),),
-      accountName: Text(user.name), 
-      accountEmail: Text(user.email),
-      currentAccountPicture: GestureDetector(
-        child: CircleAvatar(backgroundColor: Colors.black, backgroundImage: NetworkImage('http://learnpro.bucaramanga.upb.edu.co/logo.png'),),
-      )
-      ,
-    );
-    }
     _initData();
     return Scaffold(
       backgroundColor: color.AppColor.homePageBack,
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            _buildDrawerHeader(context),
-            ListTile(
-              horizontalTitleGap: 0,
-              leading: Icon(Icons.person),
-              title: Text('Perfil'),
-              trailing: Icon(Icons.arrow_right, color: Colors.black,)
-              ,
-            ),
-            Divider(color: Colors.black,),
-            ListTile(
-              horizontalTitleGap: 0,
-              leading: Icon(Icons.code),
-              title: Text('Paradigmas de Programación'),
-              trailing: Icon(Icons.arrow_right, color: Colors.black,),
-              onTap: (){
-                Navigator.of(context).pop();
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=> InicioParadigmas()));
-                //Get.to(InicioParadigmas());
-              }
-            ),
-            Divider(color: Colors.black,),
-            ListTile(
-              horizontalTitleGap: 0,
-              leading: Icon(Icons.data_array),
-              title: Text('Estructura de Datos'),
-              trailing: Icon(Icons.arrow_right, color: Colors.black,),
-              onTap: (){
-                Navigator.of(context).pop();
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=> InicioEstructuras()));
-              }
-            )
-          ]
+        child: Container(
+          color: color.AppColor.drawer,
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              //_buildDrawerHeader(context),
+              Row(
+                children: [
+                  Expanded(child:
+                  Container(
+                    //padding: EdgeInsets.symmetric(horizontal: 2),
+                    //margin: EdgeInsets.only(top: 70),
+                    //color: Colors.blue,
+                    child: Column(
+                      children:[
+                        const SizedBox(
+                          height: 100,
+                        ),
+                        ListTile(
+                          title: Text(user.name,
+                          style: const TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.w800)),
+                          subtitle: Text(user.email, style: TextStyle(fontSize: 15,color: color.AppColor.gradientS),),
+                          leading: const CircleAvatar(
+                            child: Icon(
+                              Icons.perm_identity,
+                              color: Colors.white,
+                            ),
+                            radius: 40,
+                          ),
+                        ),
+                        Divider(
+                          height: 64,
+                          thickness: 0.5,
+                          color: Colors.white.withOpacity(0.6),
+                          indent: 32,
+                          endIndent: 32,
+                        ),
+                        GestureDetector(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left:30, top:16, bottom:16),
+                            child: Row(
+                              children: const [
+                                Icon(
+                                  color: Color.fromARGB(255, 152, 255, 155),
+                                  Icons.home,
+                                  size: 30,
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  "Inicio",
+                                  style: TextStyle(fontWeight: FontWeight.w300,fontSize: 20,color:Colors.white),
+                                )
+                              ],
+                            ),
+                          ),
+                          onTap: (){
+                            Navigator.of(context).pop();
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> HomePage()));
+                          },
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left:30, top:16, bottom:16),
+                          child: Row(
+                            children: const [
+                              Icon(
+                                color: Color.fromARGB(255, 152, 255, 155),
+                                Icons.person,
+                                size: 30,
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Text(
+                                "Mi Perfil",
+                                style: TextStyle(fontWeight: FontWeight.w300,fontSize: 20,color:Colors.white),
+                              )
+                            ],
+                          ),
+                        ),
+                        GestureDetector(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left:30, top:16, bottom:16),
+                            child: Row(
+                              children: const [
+                                Icon(
+                                  color: Color.fromARGB(255, 152, 255, 155),
+                                  Icons.code,
+                                  size: 30,
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  "Inicio Paradigmas",
+                                  style: TextStyle(fontWeight: FontWeight.w300,fontSize: 20,color:Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
+                          onTap: (){
+                            Navigator.of(context).pop();
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> InicioParadigmas()));
+                          },
+                        ),
+                        GestureDetector(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left:30, top:16, bottom:16),
+                            child: Row(
+                              children: const [
+                                Icon(
+                                  color: Color.fromARGB(255, 152, 255, 155),
+                                  Icons.data_array,
+                                  size: 30,
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  "Inicio Estructura",
+                                  style: TextStyle(fontWeight: FontWeight.w300,fontSize: 20,color:Colors.white),
+                                )
+                              ],
+                            ),
+                          ),
+                          onTap: (){
+                            Navigator.of(context).pop();
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> InicioEstructuras()));
+                          },
+                        ),
+                        Divider(
+                          height: 64,
+                          thickness: 0.5,
+                          color: Colors.white.withOpacity(0.6),
+                          indent: 32,
+                          endIndent: 32,
+                        ),
+                        GestureDetector(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left:30, top:16, bottom:16),
+                            child: Row(
+                              children: const [
+                                Icon(
+                                  color: Color.fromARGB(255, 152, 255, 155),
+                                  Icons.settings,
+                                  size: 30,
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  "Configuración",
+                                  style: TextStyle(fontWeight: FontWeight.w300,fontSize: 20,color:Colors.white),
+                                )
+                              ],
+                            ),
+                          ),
+                          onTap: (){
+                            Navigator.of(context).pop();
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> HomePage()));
+                          },
+                        ),
+                        GestureDetector(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left:30, top:16, bottom:16),
+                            child: Row(
+                              children: const [
+                                Icon(
+                                  color: Color.fromARGB(255, 152, 255, 155),
+                                  Icons.logout,
+                                  size: 30,
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  "Salir",
+                                  style: TextStyle(fontWeight: FontWeight.w300,fontSize: 20,color:Colors.white),
+                                )
+                              ],
+                            ),
+                          ),
+                          onTap: (){
+                            signOutUser();
+                          },
+                        ),
+                      ],
+                    ),
+                  ))
+                ],
+              ),
+            ]
+          ),
         ),
       ),
       body: Container(

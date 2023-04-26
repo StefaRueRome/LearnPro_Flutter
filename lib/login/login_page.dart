@@ -97,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                     )
                   )
                 ),
-                icon: const Icon(Icons.arrow_right, color: Color.fromARGB(255, 17, 254, 0),),
+                icon: const Icon(Icons.arrow_right, color: Color.fromARGB(255, 13, 223, 76),),
                 label: const Text("Login"),
               ),
             )
