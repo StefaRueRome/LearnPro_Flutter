@@ -1,7 +1,10 @@
 import 'dart:convert';
 
+import 'package:app_learn_pro/providers/user_provider.dart';
+import 'package:app_learn_pro/services/auth_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'colors.dart' as color;
 import 'inicio_estructuras.dart';
 import 'inicio_paradigmas.dart';
@@ -26,20 +29,87 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _initData();
   }
+
+  void signOutUser(){
+    AuthService().signOut(context);
+  }
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context).user;
+    UserAccountsDrawerHeader _buildDrawerHeader(BuildContext context){
+    return UserAccountsDrawerHeader(
+      decoration: BoxDecoration(gradient: LinearGradient(
+        colors:[color.AppColor.gradientF.withOpacity(0.8), color.AppColor.gradientS.withOpacity(0.9)],
+        begin: Alignment.bottomLeft,
+        end: Alignment.centerRight
+      ),),
+      accountName: Text(user.name), 
+      accountEmail: Text(user.email),
+      currentAccountPicture: GestureDetector(
+        child: CircleAvatar(backgroundColor: Colors.black, backgroundImage: NetworkImage('http://learnpro.bucaramanga.upb.edu.co/logo.png'),),
+      )
+      ,
+    );
+    }
     _initData();
     return Scaffold(
       backgroundColor: color.AppColor.homePageBack,
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            _buildDrawerHeader(context),
+            ListTile(
+              horizontalTitleGap: 0,
+              leading: Icon(Icons.person),
+              title: Text('Perfil'),
+              trailing: Icon(Icons.arrow_right, color: Colors.black,)
+              ,
+            ),
+            Divider(color: Colors.black,),
+            ListTile(
+              horizontalTitleGap: 0,
+              leading: Icon(Icons.code),
+              title: Text('Paradigmas de Programación'),
+              trailing: Icon(Icons.arrow_right, color: Colors.black,),
+              onTap: (){
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=> InicioParadigmas()));
+                //Get.to(InicioParadigmas());
+              }
+            ),
+            Divider(color: Colors.black,),
+            ListTile(
+              horizontalTitleGap: 0,
+              leading: Icon(Icons.data_array),
+              title: Text('Estructura de Datos'),
+              trailing: Icon(Icons.arrow_right, color: Colors.black,),
+              onTap: (){
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=> InicioEstructuras()));
+              }
+            )
+          ]
+        ),
+      ),
       body: Container(
+        //color: Colors.green,
         padding: const EdgeInsets.only(top: 70,left: 30,right: 30),
         child: Column(
           children: [
-            Row(
-              children: const[
-                Text("Aprendiendo", style: TextStyle(fontSize: 30, color: Color.fromARGB(255, 29, 29, 29),fontWeight: FontWeight.w700),)
-                //Icono Ponerlo despues
-              ],
+            Container(
+              //color: Colors.red,
+              child: Row(
+                children: [
+                  //SizedBox(height: 30,),
+                  Text("Aprendiendo", style: TextStyle(fontSize: 25, color: Color.fromARGB(255, 29, 29, 29),fontWeight: FontWeight.w700),),
+                  //Icono Ponerlo despues
+                  Expanded(child: Container()),
+                  IconButton(onPressed: signOutUser,
+                  icon: Icon(Icons.logout)
+                  )
+                ],
+              ),
             ),
             const SizedBox(height: 30,),
             Row(
@@ -47,9 +117,6 @@ class _HomePageState extends State<HomePage> {
                 const Text("Tu Programa", style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 29, 29, 29),fontWeight: FontWeight.w700),),
                 //Icono Ponerlo despues
                 Expanded(child: Container()),
-                const Text("Detalles", style: TextStyle(fontSize: 20,color: Color.fromARGB(255, 58, 167, 11), fontWeight: FontWeight.w400),),
-                const SizedBox(width: 5,),
-                const Icon(Icons.arrow_forward,size: 20,color: Color.fromARGB(255, 49, 47, 47),)
               ],
             ),
             const SizedBox(height: 20,),

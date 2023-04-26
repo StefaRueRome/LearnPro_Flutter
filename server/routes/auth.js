@@ -4,6 +4,7 @@ var bcrypt = require('bcryptjs')
 const User = require("../model/user");
 const authRouter = express.Router();
 const jwt = require("jsonwebtoken");
+const auth= require("../middleware/auth");
 
 //Sign up 
 authRouter.post("/api/signup", async (req,res)=>{
@@ -24,7 +25,6 @@ authRouter.post("/api/signup", async (req,res)=>{
 
     }catch (e){
         res.status(500).json({error: e.message});
-        //res.status(500).json({msg: e.message});
 
     }
 });
@@ -49,6 +49,30 @@ authRouter.post("/api/signin", async (req,res)=>{
     }catch(e){
         res.status(500).json({error: e.message});
     }
+});
+
+authRouter.post("/tokenIsValid",async(req,res)=>{
+    try{
+        const token = req.header("x-auth-token");
+        if(!token) return res.json(false);
+        const verified = jwt.verify(token,"passwordKey");
+        if(!verified) return res.json(false);
+
+        const user = await User.findById(verified.id);
+        if(!user) return res.json(false);
+        res.json(true);
+
+    }catch(err){
+        res.status(500).json({error:err.message});
+
+    }
+});
+
+// get user data
+
+authRouter.get("/",auth, async(req,res)=>{
+    const user=await User.findById(req.user);
+    res.json({...user._doc,token:req.token});
 });
 
 module.exports = authRouter;

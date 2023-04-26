@@ -31,7 +31,7 @@ class _SignupPageState extends State<SignupPage> {
           children: [
             Center(
               child: const Text(
-                "Sign In",
+                "Registrate",
                 style: TextStyle(
                   fontSize: 34,
                   fontFamily: "Poppins",
@@ -44,7 +44,7 @@ class _SignupPageState extends State<SignupPage> {
             const Text("Refuerza tus conocimientos en Paradigmas de Programación y en Estructura de Datos con LearnPro",
             textAlign: TextAlign.center,
             ),
-            Text("Name",style: TextStyle(color: Colors.black),),
+            Text("Nombre",style: TextStyle(color: Colors.black),),
             Padding(
               padding: const EdgeInsets.only(top: 8,bottom: 8),
               child: TextField(
@@ -82,7 +82,7 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
             ),
-            Text("Password",style: TextStyle(color: Colors.black),),
+            Text("Contraseña",style: TextStyle(color: Colors.black),),
             Padding(
               padding: const EdgeInsets.only(top: 8,bottom: 8),
               child: TextField(
@@ -120,7 +120,7 @@ class _SignupPageState extends State<SignupPage> {
                   )
                 ),
                 icon: const Icon(Icons.arrow_right, color: Color.fromARGB(255, 17, 254, 0),),
-                label: const Text("Sign In"),
+                label: const Text("Registrarse"),
               ),
             ),
             SizedBox(height: 15,),
@@ -130,7 +130,7 @@ class _SignupPageState extends State<SignupPage> {
                 children: [
                   Text("Ya estás registrado?. "),
                   InkWell(child:Text("Accede", style: TextStyle(color: Color.fromARGB(255, 17, 254, 88),decoration: TextDecoration.underline),),onTap:(){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginPage()));
                   })
                 ],
               ),

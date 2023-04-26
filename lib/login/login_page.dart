@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../services/auth_services.dart';
 
-class LoginScreen extends StatefulWidget{
+class LoginPage extends StatefulWidget{
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final AuthService authService = AuthService();
@@ -17,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: 
+    return Scaffold(body:
     Center(
       child: Container(
         decoration: BoxDecoration(),///terminar
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            Text("Password",style: TextStyle(color: Colors.black),),
+            Text("Contraseña",style: TextStyle(color: Colors.black),),
             Padding(
               padding: const EdgeInsets.only(top: 8,bottom: 8),
               child: TextField(
