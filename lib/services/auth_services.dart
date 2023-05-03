@@ -37,7 +37,7 @@ class AuthService{
         response: res,
         context: context,
         onSuccess: (){
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: const Text('Cuenta creada!, Logueate con las mismas credenciales!') ,));
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Cuenta creada!, Logueate con las mismas credenciales!') ,));
         },
       );
 

@@ -23,31 +23,31 @@ class Inicio extends StatelessWidget{
             padding: EdgeInsets.zero,
             children: <Widget>[
                 _buildDrawerHeader(context),
-                ListTile(
+                const ListTile(
                   horizontalTitleGap: 0,
                   leading: Icon(Icons.person),
                   title: Text('Perfil'),
                   trailing: Icon(Icons.arrow_right, color: Colors.black,)
                   ,
                 ),
-                Divider(color: Colors.black,),
+                const Divider(color: Colors.black,),
                 ListTile(
                   horizontalTitleGap: 0,
-                  leading: Icon(Icons.code),
-                  title: Text('Paradigmas de Programación'),
-                  trailing: Icon(Icons.arrow_right, color: Colors.black,),
+                  leading:const Icon(Icons.code),
+                  title: const Text('Paradigmas de Programación'),
+                  trailing: const Icon(Icons.arrow_right, color: Colors.black,),
                   onTap: (){
                     Navigator.of(context).pop();
                     Navigator.of(context).push(MaterialPageRoute(builder: (context)=> InicioParadigmas()));
                     //Get.to(InicioParadigmas());
                   }
                 ),
-                Divider(color: Colors.black,),
+                const Divider(color: Colors.black,),
                 ListTile(
                   horizontalTitleGap: 0,
-                  leading: Icon(Icons.data_array),
-                  title: Text('Estructura de Datos'),
-                  trailing: Icon(Icons.arrow_right, color: Colors.black,),
+                  leading: const Icon(Icons.data_array),
+                  title: const Text('Estructura de Datos'),
+                  trailing: const Icon(Icons.arrow_right, color: Colors.black,),
                   onTap: (){
                     Navigator.of(context).pop();
                     Navigator.of(context).push(MaterialPageRoute(builder: (context)=> InicioEstructuras()));
@@ -56,7 +56,7 @@ class Inicio extends StatelessWidget{
             ],
           ),
         ),
-        appBar: AppBar(backgroundColor: Color.fromARGB(242, 22, 134, 3),title: const Text("Inicio")),
+        appBar: AppBar(backgroundColor: const Color.fromARGB(242, 22, 134, 3),title: const Text("Inicio")),
         body: ListView(
           children: <Widget>[
             SizedBox(height: 250,
@@ -65,7 +65,7 @@ class Inicio extends StatelessWidget{
                 videoPlayerController: VideoPlayerController.network('http://learnpro.bucaramanga.upb.edu.co/videos/paradigmas/1.mp4'),
                 looping: false,
               ),),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             SizedBox(height: 250,
               child:
             ChewieVideo(
@@ -78,11 +78,11 @@ class Inicio extends StatelessWidget{
   }
   UserAccountsDrawerHeader _buildDrawerHeader(BuildContext context){
     return UserAccountsDrawerHeader(
-      decoration: BoxDecoration(color: Color.fromARGB(242, 22, 134, 3)),
-      accountName: Text('Pedro Gómez'), 
-      accountEmail: Text('pipe22007@gmail.com'),
+      decoration: const BoxDecoration(color: Color.fromARGB(242, 22, 134, 3)),
+      accountName: const Text('Pedro Gómez'), 
+      accountEmail: const Text('pipe22007@gmail.com'),
       currentAccountPicture: GestureDetector(
-        child: CircleAvatar(backgroundColor: Colors.black, backgroundImage: NetworkImage('http://learnpro.bucaramanga.upb.edu.co/logo.png'),),
+        child: const CircleAvatar(backgroundColor: Colors.black, backgroundImage: NetworkImage('http://learnpro.bucaramanga.upb.edu.co/logo.png'),),
       )
       ,
     );

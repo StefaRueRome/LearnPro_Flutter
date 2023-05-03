@@ -6,7 +6,7 @@ class ChewieVideo extends StatefulWidget {
   final VideoPlayerController videoPlayerController;
   final bool looping;
 
-  ChewieVideo({
+  const ChewieVideo({
     required this.videoPlayerController,
     required this.looping,
     Key? key,
@@ -37,7 +37,7 @@ class _ChewieVideoState extends State<ChewieVideo> {
         return Center(
           child: Text(
             errorMessage,
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
         );
       },

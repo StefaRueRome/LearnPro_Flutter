@@ -394,7 +394,7 @@ class _InicioEstructurasState extends State<InicioEstructuras> {
                         width: 350,
                         height: 80,
                         child: const AutoSizeText(
-                          "A continuación encontraras un editor de codigo para que practiques lo visto en el video",
+                          "A continuación encontraras un editor de codigo para que practiques lo visto en el video.",
                           style: TextStyle(color: Color.fromARGB(255, 45, 45, 45)),
                           maxLines: 4,
                           maxFontSize: 15,

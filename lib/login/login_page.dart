@@ -20,14 +20,14 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(body:
     Center(
       child: Container(
-        decoration: BoxDecoration(),///terminar
+        decoration:const BoxDecoration(),///terminar
         width: 350,
         height: 550,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
-              child: const Text(
+            const Center(
+              child: Text(
                 "Login",
                 style: TextStyle(
                   fontSize: 34,
@@ -37,21 +37,21 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             const Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16)),
+              padding: EdgeInsets.symmetric(vertical: 16)),
             const Text("Refuerza tus conocimientos en Paradigmas de Programación y en Estructura de Datos con LearnPro",
             textAlign: TextAlign.center,
             ),
-            Text("Email",style: TextStyle(color: Colors.black),),
+            const Text("Email",style: TextStyle(color: Colors.black),),
             Padding(
               padding: const EdgeInsets.only(top: 8,bottom: 8),
               child: TextField(
                 controller: emailController,
                 obscureText: false,
                 decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder:const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white),
                   ),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder:const OutlineInputBorder(
                     borderSide: BorderSide(color: Color.fromARGB(255, 85, 216, 3)),
                   ),
                   fillColor: Colors.grey.shade200,
@@ -60,17 +60,17 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            Text("Contraseña",style: TextStyle(color: Colors.black),),
+            const Text("Contraseña",style: TextStyle(color: Colors.black),),
             Padding(
               padding: const EdgeInsets.only(top: 8,bottom: 8),
               child: TextField(
                 controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder:const OutlineInputBorder(
                     borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
                   ),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder:const OutlineInputBorder(
                     borderSide: BorderSide(color: Color.fromARGB(255, 85, 216, 3)),
                   ),
                   fillColor: Colors.grey.shade200,
@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                   loginUser();
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 133, 235, 140),
+                  backgroundColor:const Color.fromARGB(255, 93, 220, 102),
                   minimumSize: const Size(double.infinity, 56),
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
@@ -97,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                     )
                   )
                 ),
-                icon: const Icon(Icons.arrow_right, color: Color.fromARGB(255, 13, 223, 76),),
+                icon: const Icon(Icons.arrow_right, color: Color.fromARGB(255, 15, 183, 3),),
                 label: const Text("Login"),
               ),
             )

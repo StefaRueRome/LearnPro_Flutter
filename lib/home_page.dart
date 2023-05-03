@@ -40,6 +40,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: color.AppColor.homePageBack,
       drawer: Drawer(
+        width: 350,
         child: Container(
           color: color.AppColor.drawer,
           child: ListView(
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Expanded(child:
                   Container(
-                    //padding: EdgeInsets.symmetric(horizontal: 2),
+                    padding: EdgeInsets.symmetric(horizontal: 10),
                     //margin: EdgeInsets.only(top: 70),
                     //color: Colors.blue,
                     child: Column(
@@ -258,7 +259,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 30,),
             Row(
               children: [
-                const Text("Tu Programa", style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 29, 29, 29),fontWeight: FontWeight.w700),),
+                const Text("Bienvenido a LearnPro", style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 29, 29, 29),fontWeight: FontWeight.w700),),
                 //Icono Ponerlo despues
                 Expanded(child: Container()),
               ],
@@ -288,32 +289,36 @@ class _HomePageState extends State<HomePage> {
                 ]
               ),
               child: Container(
-                padding: const EdgeInsets.only(left: 20, top: 25, right: 20),
+                //color: Colors.red,
+                padding: const EdgeInsets.only(left: 20, top: 20, right: 30),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Próximo video",
+                    const SizedBox(height: 5,),
+                    const Text("Refuerza tus conocimientos",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Color.fromARGB(255, 234, 233, 233),
+                        fontWeight: FontWeight.w700
+                      ),
+                    ),
+                    SizedBox(height: 5,),
+                    //SizedBox(height: 5,),
+                    const Text("LearnPro es una app que busca apoyar tu formación y conocimiento.",
                       style: TextStyle(
                         fontSize: 16,
                         color: Color.fromARGB(255, 234, 233, 233)
                       ),
                     ),
-                    const SizedBox(height: 5,),
-                    const Text("Descripción del video",
-                      style: TextStyle(
-                        fontSize: 22,
-                        color: Color.fromARGB(255, 234, 233, 233)
-                      ),
-                    ),
-                    const SizedBox(height: 25,),
+                    const SizedBox(height: 15,),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Row(
                           children: const [
-                            Icon(Icons.timer, size: 20, color: Color.fromARGB(255, 234, 233, 233),),
+                            Icon(Icons.travel_explore_sharp, size: 20, color: Color.fromARGB(255, 234, 233, 233),),
                             SizedBox(width: 10,),
-                            Text("60 min",  /////Tiempo del video
+                            Text("Empieza ahora",  /////Tiempo del video
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Color.fromARGB(255, 234, 233, 233)

@@ -1,3 +1,4 @@
+import 'package:app_learn_pro/editor/editor.dart';
 import 'package:app_learn_pro/home_page.dart';
 import 'package:app_learn_pro/login/signup_page.dart';
 import 'package:app_learn_pro/providers/user_provider.dart';
@@ -35,7 +36,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue
       ),
-      home: Provider.of<UserProvider>(context).user.token.isEmpty? SignupPage() : HomePage(),
+      home: SignupPage()  //Provider.of<UserProvider>(context).user.token.isEmpty? SignupPage() : HomePage(),
     );
   }
 }

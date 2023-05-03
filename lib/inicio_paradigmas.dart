@@ -66,14 +66,21 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
         decoration: _playArea==false?BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              color.AppColor.gradientF.withOpacity(0.9),
+              color.AppColor.gradientF,
               color.AppColor.gradientS
             ],
             begin: const FractionalOffset(0.0, 0.4),
             end: Alignment.topRight,
           )
         ):BoxDecoration(
-          color: color.AppColor.gradientS,
+          gradient: LinearGradient(
+            colors: [
+              color.AppColor.gradientF,
+              color.AppColor.gradientS
+            ],
+            begin: const FractionalOffset(0.0, 0.4),
+            end: Alignment.topRight,
+          )
         ),
         child: Column(
           children: [
@@ -121,13 +128,12 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
                         height:80,
                         //height: MediaQuery.of(context).size.height,
                         child: const AutoSizeText(
-                          "Lorem Ipsum is simply dummy text of the printing" +
-                          "and typesetting industry. Lorem Ipsum has been " +
-                          "the industry's standard dummy text ever since the 1500s",
+                          "En este curso podrás reforzar algunos de los temas más importantes de la programación. Los puedes ver acontinuación.",
                           maxLines:4,
                           style: TextStyle(fontSize:15, color:Color.fromARGB(255, 234, 233, 233)),
                         ),
-                      )
+                      ),
+                      //const Icon(Icons.arrow_downward, size: 15,color: Colors.white,)
                     ],
                   )
                 ],
@@ -352,7 +358,7 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 90, 89, 89)
+                                  color: Colors.black
                                 ),
                               ),
                             ),
@@ -381,7 +387,7 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 90, 89, 89)
+                            color: Colors.black
                           ),
                         ),
                       ),
@@ -400,19 +406,27 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
                         ),
                       ),
                       //const SizedBox(height: 10,),
-                      Container(
-                        width: 350,
-                        height: 350,
-                        color: Colors.grey[700],
-                        child: Row(
-                          children: const [
-                            Text(
-                              "Editor de codigo - python ",
-                              style: TextStyle(fontSize: 15,color:Colors.grey),
+                      Padding(
+                        padding: const EdgeInsets.only(right:35),
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:Color.fromARGB(255, 93, 220, 102),
+                            minimumSize: const Size(double.infinity, 56),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(25),
+                                bottomRight: Radius.circular(25),
+                                bottomLeft: Radius.circular(25)
+                              )
                             )
-                          ],
+                          ),
+                          icon: const Icon(Icons.code, color: Color.fromARGB(255, 15, 183, 3),),
+                          label: const Text("Ir al editor"),
                         ),
-                      )
+                      ),
                     ]
                   ),
                 )
@@ -489,7 +503,6 @@ class _InicioParadigmasState extends State<InicioParadigmas> {
           height: 50,
           width: MediaQuery.of(context).size.width,
           margin: const EdgeInsets.only(bottom: 5),
-          color: color.AppColor.gradientS,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
